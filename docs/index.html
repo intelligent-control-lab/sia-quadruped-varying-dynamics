@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Safe Control of Quadruped in Varying Dynamics via Safety Index Adaptation">
+    <meta name="keywords" content="Safe Control, Quadruped, Adaptive Control">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Safe Control of Quadruped in Varying Dynamics via Safety Index Adaptation</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+
+    <link rel="icon" href="./go2_package.ico">
+
+    <!-- facebook -->
+    <meta property="og:site_name" content="Safe Control of Quadruped in Varying Dynamics via Safety Index Adaptation" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Safe Control of Quadruped in Varying Dynamics via Safety Index Adaptation" />
+    <meta property="og:description" content="Safe Control of Quadruped in Varying Dynamics via Safety Index Adaptation" />
+    <meta property="og:url" content="https://intelligent-control-lab.github.io/sia-quadruped-varying-dynamics/" />
+    <meta property="og:image"content="https://intelligent-control-lab.github.io/sia-quadruped-varying-dynamics/static/images/preview.jpg" />
+    <meta property="og:image:secure"content="https://intelligent-control-lab.github.io/sia-quadruped-varying-dynamics/static/images/preview.jpg" />
+    <meta property="og:video"content="https://www.youtube.com/watch?v=g64ZzJxaHpk" />
+    <meta property="og:video:secure"content="https://www.youtube.com/watch?v=g64ZzJxaHpk" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="900" />
+
+    <meta property="article:publisher" content="https://kaiyun717.github.io" />
+
+    <!-- twitter -->
+    <!-- <meta name="twitter:label1" content="Written by" /> -->
+    <!-- <meta name="twitter:data1" content="Deepak Pathak" /> -->
+    <!-- <meta name="twitter:label2" content="Filed under" /> -->
+    <!-- <meta name="twitter:data2" content="" /> -->
+    <!-- <meta name="twitter:card" content="summary_large_image" /> -->
+    <!-- <meta name="twitter:image" content="https://intelligent-control-lab.github.io/spark/static/images/preview.jpg" /> -->
+    <!-- <meta name="twitter:site" content="@pathak2206" /> -->
+
+    <!-- <script src="https://www.youtube.com/iframe_api"></script>
+    <meta name="twitter:card" content="player" />
+    <meta name="twitter:title" content="SPARK: A Toolbox for Safe Humanoids" />
+    <meta name="twitter:description" content="Safeguarding humanoid research and development." />
+    <meta name="twitter:url" content="https://intelligent-control-lab.github.io/spark/" />
+    <meta name="twitter:image" content="https://intelligent-control-lab.github.io/spark/static/images/preview.jpg" />
+    <meta name="twitter:player" content="https://www.youtube.com/embed/vIzeQ31YbCM" />
+    <meta name="twitter:player:width" content="640" />
+    <meta name="twitter:player:height" content="360" /> -->
+
+    <style>
+      .video-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: none;
+      }
+    
+      .video-container iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: none;
+        border: 1px
+        solid #bbb;
+        border-radius: 10px;
+        width: 100%;
+      }
+
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        gap: 20px; /* Space between rows and columns */
+        justify-items: center; /* Center the items horizontally */
+        align-items: center; /* Center the items vertically */
+      }
+      
+      .image-grid img {
+          max-width: 100%;
+          height: auto; /* Maintain aspect ratio */
+          border-radius: 10px; /* Optional: Add rounded corners */
+      }
+      
+    </style>
+
+  </head>
+  <body>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">Safe Control of Quadruped in Varying 
+                Dynamics<br />via Safety Index Adaptation</h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://kaiyun717.github.io">Kai S. Yun
+                    Yun</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="https://ruichen.pub/">Rui
+                    Chen</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="https://www.linkedin.com/in/chase-dunaway-bb91612a8/">Chase 
+                    Dunaway</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="https://www.ri.cmu.edu/ri-faculty/john-m-dolan/">John 
+                    M. Dolan</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="https://www.cs.cmu.edu/~cliu6/">Changliu
+                    Liu</a><sup>1</sup>
+                  <br /><sup>1</sup>Carnegie Mellon University; <sup>2</sup>New Mexico Institute of Mining and Technology
+                  <span class="brmod">ICRA 2025</span>
+                </span>
+              </div>
+
+              <div class="column has-text-centered">
+
+                <div class="publication-links">
+                  
+                  <!-- PDF Link. -->
+                  <!-- <span class="link-block">
+                    <a
+                      class="external-link button is-normal is-rounded is-dark" disabled>
+                      <span class="icon">
+                        <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                      </span>
+                      <span>Full Paper (coming soon)</span>
+                    </a>
+                  </span> -->
+
+                  <!-- arXiv Link. -->
+                  <span class="link-block">
+                    <a href="https://www.arxiv.org/abs/2409.09882"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+
+                  <!-- Video Link. -->
+                  <span class="link-block">
+                    <a href="https://www.youtube.com/watch?v=g64ZzJxaHpk"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-youtube" aria-hidden="true"></i>
+                      </span>
+                      <span>Video</span>
+                    </a>
+                  </span>
+
+                  <!-- Poster Link. -->
+                  <!-- <span class="link-block">
+                    <a href=""
+                       class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="far fa-file"></i>
+                      </span>
+                      <span>Poster</span>
+                    </a>
+                  </span> -->
+
+                  <!-- twitter Link. -->
+                  <!-- <span class="link-block">
+                    <a
+                      href="https://twitter.com/pathak2206/status/1706696237703901439?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1706696237703901439%7Ctwgr%5E15e02108dbb696247a490e6499f2b18191e73a85%7Ctwcon%5Es1_c10&amp;ref_url=https%3A%2F%2Fpublish.twitter.com%2F%3Fquery%3Dhttps3A2F2Ftwitter.com2Fpathak22062Fstatus2F1706696237703901439widget%3DTweet"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                      </span>
+                      <span>Summary</span>
+                    </a>
+                  </span> -->
+
+                  <!-- code Link. -->
+                  <!-- <span class="link-block">
+                    <a 
+                      class="external-link button is-normal is-rounded is-dark"
+                      target="_blank"
+                      disabled>
+                      <span class="icon">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                      </span>
+                      <span>Code (coming soon)</span>
+                    </a>
+                  </span> -->
+
+                  <!-- demo Link. -->
+                  <!-- <span class="link-block">
+                    <a href="#demo"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fa-solid fa-tower-broadcast"
+                          aria-hidden="true"></i>
+                      </span>
+                      <span>Live Demo CoRL 2023</span>
+                    </a>
+                  </span> -->
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- Paper video. -->
+        <div id="method_video" class="columns is-centered has-text-centered">
+          <div class="column is-two-thirds">
+            <div class="video-container">
+              <iframe
+                src="https://www.youtube.com/embed/g64ZzJxaHpk?si=0Xdt5gtsgvXdM-im"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <!--/ Paper video. -->
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-two-thirds">
+            <h2 class="title is-2">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Varying dynamics pose a fundamental difficulty when deploying 
+                safe control laws in the real world. Safety Index Synthesis (SIS) 
+                deeply relies on the system dynamics and once the dynamics change, 
+                the previously synthesized safety index becomes invalid. In this 
+                work, we show the real-time efficacy of Safety Index Adaptation 
+                (SIA) in varying dynamics. SIA enables real-time adaptation to the 
+                changing dynamics so that the adapted safe control law can still 
+                guarantee 1) forward invariance within a safe region and 2) finite 
+                time convergence to that safe region. This work employs SIA on a 
+                package-carrying quadruped robot, where the payload weight changes 
+                in real-time. SIA updates the safety index when the dynamics change, 
+                e.g., a change in payload weight, so that the quadruped can avoid 
+                obstacles while achieving its performance objectives. Numerical 
+                study provides theoretical guarantees for SIA and a series of 
+                hardware experiments demonstrate the effectiveness of SIA in 
+                real-world deployment in avoiding obstacles under varying dynamics.
+              </p>
+            </div>
+
+            <!-- <video autoplay loop muted playsinline
+              src="./resources/front_video.mp4"
+              style="border: 0px solid #bbb; border-radius: 1px; width: 100%;">
+            </video>
+
+            <h2 class="title is-6">Humanoid tasks safeguarded by SPARK. Nominal
+              actions are perturbed (SSA on) when necessary to ensure
+              safety.</h2> -->
+
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+    </section>
+
+    <section class="section"></section>
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            
+            <!-- actual content -->
+
+            <h2 class="title is-2" style="text-align: center;">
+              Safety Index Adaptation Experiment Pipeline
+            </h2>
+            <br>
+            <center>
+              <img src="./resources/sia_go2_overview.png" alt="Overview" style="width:60%"/>
+            </center>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            
+            <!-- actual content -->
+
+            <h2 class="title is-2" style="text-align: center;">
+              Static Reference Tracking with Safe Control
+            </h2>
+            <tr>
+              <td>
+
+                <div class="image-grid">
+                  <video autoplay loop muted playsinline
+                    src="./resources/examples/head.mp4"
+                    style="border: 1px solid #bbb; border-radius: 10px; width: 100%;"></video>
+                  <video autoplay loop muted playsinline
+                    src="./resources/examples/no_cloth_static_arm.mp4"
+                    style="border: 1px solid #bbb; border-radius: 10px; width: 100%;"></video>
+                  <video autoplay loop muted playsinline
+                    src="./resources/examples/elbow_back.mp4"
+                    style="border: 1px solid #bbb; border-radius: 10px; width: 100%;"></video>
+                  <video autoplay loop muted playsinline
+                    src="./resources/examples/wrist_side.mp4"
+                    style="border: 1px solid #bbb; border-radius: 10px; width: 100%;"></video>
+                </div>
+
+              </td>
+            </tr>
+            
+            <!--  -->
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            
+            <!-- actual content -->
+
+            <h2 class="title is-2" style="text-align: center;">
+              Dynamic Reference Tracking with Safe Control
+            </h2>
+            <tr>
+              <td>
+
+                <div class="image-grid">
+                  <!-- <video autoplay loop muted playsinline
+                    src="./resources/examples/dynamic-2.mp4"
+                    style="border: 1px solid #bbb; border-radius: 10px; width: 100%;"></video> -->
+                  <video autoplay loop muted playsinline
+                    src="./resources/examples/dynamic-3.mp4"
+                    style="border: 1px solid #bbb; border-radius: 10px; width: 100%;"></video>
+                  <video autoplay loop muted playsinline
+                    src="./resources/examples/dynamic-4.mp4"
+                    style="border: 1px solid #bbb; border-radius: 10px; width: 100%;"></video>
+                  <!-- <video autoplay loop muted playsinline
+                    src="./resources/examples/dynamic-5.mp4"
+                    style="border: 1px solid #bbb; border-radius: 10px; width: 100%;"></video> -->
+                </div>
+
+              </td>
+            </tr>
+            
+            <!--  -->
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+
+          <div class="is-vcentered interpolation-panel">
+            <h2 class="title is-2" style="text-align: center;">Related Work</h2>
+            <div class="content is-centered has-text-centered">
+              This work is part of our research on provably safe control.
+              Please explore our other contributions below.
+            </div>
+            <div class="container">
+              <div class="columns is-vcentered">
+                <!-- Image Column -->
+                <div class="column is-4">
+                  <figure class="image">
+                    <img src="./resources/Spark_Cover.png" alt="RMA Image">
+                  </figure>
+                </div>
+
+                <!-- Text Column -->
+                <div class="column is-8">
+                  <h2 class="title is-4"> SPARK: A Modular Benchmark for Humanoid 
+                    Robot Safety</h2>
+                  <p>
+                    Yifan Sun, Rui Chen, Kai S. Yun, Yikuan Fang, Sebin Jung, Feihan Li, Bowei Li, Weiye Zhao, Changliu Liu<br />
+                    Submitted to RSS 2025
+                  </p>
+                  <p>
+                    <a href="https://arxiv.org/abs/2502.03132"
+                      class="button is-link">arXiv</a>
+                    <a href="https://www.youtube.com/watch?v=vIzeQ31YbCM" 
+                      class="button is-link">Video</a>
+                    <a href="https://intelligent-control-lab.github.io/spark/" 
+                      class="button is-link">Project Page</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="columns is-vcentered">
+                <!-- Image Column -->
+                <div class="column is-4">
+                  <figure class="image">
+                    <img src="./resources/acc_sia.png" alt="RMA Image">
+                  </figure>
+                </div>
+
+                <!-- Text Column -->
+                <div class="column is-8">
+                  <h2 class="title is-4"> Real-time Safety Index Adaptation for 
+                    Parameter-varying Systems via Determinant Gradient Ascend</h2>
+                  <p>
+                    Rui Chen, Weiye Zhao, Ruixuan Liu, Weiyang Zhang, Changliu Liu<br />
+                    Accepted to ACC 2024
+                  </p>
+                  <p>
+                    <a href="https://arxiv.org/abs/2403.14968"
+                      class="button is-link">arXiv</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+      <div class="container content">
+        <h2 class="titile">BibTeX</h2>
+        <pre>
+          <code>
+            @inproceedings{yun2025siadog,
+              title={Safe Control of Quadruped in Varying Dynamics via Safety Index Adaptation},
+              author={Yun, Kai S. and Chen, Rui and Dunaway, Chase and Dolan, John M. and Liu, Changliu},
+              booktitle={IEEE International Conference on Robotics and Automation},
+              year={2025},
+              organization={IEEE},
+              url={https://www.arxiv.org/abs/2409.09882},
+              video={https://www.youtube.com/watch?v=g64ZzJxaHpk},
+            }
+          </code>
+        </pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+
+          <!-- <a href="./resources/spark.pdf" class="large-font bottom_buttons">
+            <i class="fas fa-file-pdf"></i>
+          </a> -->
+
+          <!-- <a class="large-font bottom_buttons" disabled>
+            <i class="fab fa-github"></i>
+          </a> -->
+
+          <br />
+
+          <p>Page template borrowed from <a
+              href="https://worldsheet.github.io/"><span
+                class="dnerf">Worldsheet</span></a> and <a
+              href="https://nerfies.github.io/"><span
+                class="dnerf">Nerfies</span></a>.</p>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
